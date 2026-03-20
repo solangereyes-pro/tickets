@@ -2,8 +2,8 @@
   "servicetonic": {
     "login_url": "https://admincoordinador.plataformagroup.cl/ServiceTonic/login.jsf",
     "tickets_url": "https://admincoordinador.plataformagroup.cl/ServiceTonic/xhtml/agentes/servicedesk/agent_sd.jsf?id=66",
-    "username": "REDACTED_USER",
-    "password": "REDACTED_PASS"
+    "username": "",
+    "password": ""
   },
   "email": {
     "recipient": "solange.reyes@prodigio.tech",
