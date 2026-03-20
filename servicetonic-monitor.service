@@ -1,0 +1,32 @@
+[Unit]
+Description=ServiceTonic Monitor Robot
+Documentation=https://admincoordinador.plataformagroup.cl/ServiceTonic/
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/servicetonic_monitor
+ExecStart=/usr/bin/python3 /home/ubuntu/servicetonic_monitor/servicetonic_monitor.py
+Restart=always
+RestartSec=30
+StartLimitInterval=200
+StartLimitBurst=5
+
+# Variables de entorno
+Environment=PYTHONUNBUFFERED=1
+Environment=DISPLAY=:99
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=servicetonic-monitor
+
+# Seguridad
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

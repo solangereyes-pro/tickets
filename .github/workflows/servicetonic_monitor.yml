@@ -1,0 +1,86 @@
+name: ServiceTonic Monitor Robot
+
+on:
+  schedule:
+    # Ejecutar cada 15 minutos
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    # Permite ejecución manual desde la UI de GitHub Actions
+
+jobs:
+  monitor:
+    name: Monitorear tickets asignados
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      # ── 1. Checkout del repositorio ──────────────────────────────
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── 2. Configurar Python ──────────────────────────────────────
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # ── 3. Instalar dependencias ──────────────────────────────────
+      - name: Instalar dependencias Python
+        run: pip install -r requirements.txt
+
+      - name: Instalar Playwright y Chromium
+        run: |
+          playwright install chromium
+          playwright install-deps chromium
+
+      # ── 4. Restaurar estado de tickets (last_tickets.json) ────────
+      - name: Restaurar estado de tickets previo
+        uses: actions/cache@v4
+        with:
+          path: last_tickets.json
+          key: last-tickets-state-${{ github.run_id }}
+          restore-keys: |
+            last-tickets-state-
+
+      # ── 5. Ejecutar el robot ──────────────────────────────────────
+      - name: Ejecutar robot ServiceTonic Monitor
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          ST_USER: ${{ secrets.ST_USER }}
+          ST_PASSWORD: ${{ secrets.ST_PASSWORD }}
+        run: python run_once.py
+
+      # ── 6. Guardar log CSV como artefacto ─────────────────────────
+      - name: Subir log CSV como artefacto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticket-monitor-log-${{ github.run_number }}
+          path: |
+            ticket_monitor.log
+            robot_debug.log
+          retention-days: 30
+
+      # ── 7. Guardar screenshots de errores ─────────────────────────
+      - name: Subir screenshots de errores
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: error-screenshots-${{ github.run_number }}
+          path: screenshots/
+          retention-days: 7
+
+      # ── 8. Commit del log y estado actualizado al repositorio ─────
+      - name: Commit del log y estado actualizado
+        if: always()
+        run: |
+          git config user.name "ServiceTonic Bot"
+          git config user.email "actions@github.com"
+          git add ticket_monitor.log last_tickets.json || true
+          git diff --staged --quiet || git commit -m "chore: actualizar log y estado de tickets [skip ci]"
+          git push || true

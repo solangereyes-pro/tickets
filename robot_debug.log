@@ -1,0 +1,40 @@
+2026-03-10 15:51:51 | INFO | Iniciando navegador...
+2026-03-10 15:51:54 | INFO | Navegador iniciado correctamente.
+2026-03-10 15:51:54 | INFO | Intento de login 1/3...
+2026-03-10 15:52:08 | INFO | Login exitoso.
+2026-03-10 15:52:08 | DEBUG | Extrayendo tickets — página 1...
+2026-03-10 15:52:08 | DEBUG | Navegando a vista de tickets: https://admincoordinador.plataformagroup.cl/ServiceTonic/xhtml/agentes/servicedesk/agent_sd.jsf?id=66
+2026-03-10 15:52:38 | WARNING | Timeout al cargar página de tickets — reintentando...
+2026-03-10 15:53:19 | DEBUG | Tickets extraídos de la página: 20
+2026-03-10 15:53:19 | DEBUG | Página 1: 20 tickets encontrados.
+2026-03-10 15:53:19 | INFO | No se encontró last_tickets.json — primera ejecución.
+2026-03-10 15:53:19 | DEBUG | Estado guardado: 20 tickets.
+2026-03-10 15:53:19 | DEBUG | LOG CSV → 2026-03-10,15:53:19,NOT_FOUND,N/A
+2026-03-10 15:53:19 | INFO | Navegador cerrado.
+2026-03-18 22:42:59 | INFO | Iniciando navegador...
+2026-03-18 22:43:01 | INFO | Navegador iniciado correctamente.
+2026-03-18 22:43:01 | INFO | Intento de login 1/3...
+2026-03-18 22:43:05 | INFO | Login exitoso.
+2026-03-18 22:43:05 | DEBUG | Extrayendo tickets — página 1...
+2026-03-18 22:43:05 | DEBUG | Navegando a vista de tickets: https://admincoordinador.plataformagroup.cl/ServiceTonic/xhtml/agentes/servicedesk/agent_sd.jsf?id=66
+2026-03-18 22:43:11 | DEBUG | Tickets extraídos de la página: 20
+2026-03-18 22:43:11 | DEBUG | Página 1: 20 tickets encontrados.
+2026-03-18 22:43:11 | DEBUG | Estado cargado: 20 tickets conocidos.
+2026-03-18 22:43:11 | DEBUG | LOG CSV → 2026-03-18,22:43:11,FOUND,66079
+2026-03-18 22:43:11 | WARNING | Email NO enviado para ticket 66079: smtp_user y smtp_password no configurados en config.json.
+2026-03-18 22:43:11 | DEBUG | LOG CSV → 2026-03-18,22:43:11,FOUND,66183
+2026-03-18 22:43:11 | WARNING | Email NO enviado para ticket 66183: smtp_user y smtp_password no configurados en config.json.
+2026-03-18 22:43:11 | DEBUG | Estado guardado: 20 tickets.
+2026-03-18 22:43:11 | INFO | Navegador cerrado.
+2026-03-19 23:37:51 | INFO | Iniciando navegador...
+2026-03-19 23:37:56 | INFO | Navegador iniciado correctamente.
+2026-03-19 23:37:56 | INFO | Intento de login 1/3...
+2026-03-19 23:37:59 | INFO | Login exitoso.
+2026-03-19 23:37:59 | DEBUG | Extrayendo tickets — página 1...
+2026-03-19 23:37:59 | DEBUG | Navegando a vista de tickets: https://admincoordinador.plataformagroup.cl/ServiceTonic/xhtml/agentes/servicedesk/agent_sd.jsf?id=66
+2026-03-19 23:38:12 | DEBUG | Tickets extraídos de la página: 20
+2026-03-19 23:38:12 | DEBUG | Página 1: 20 tickets encontrados.
+2026-03-19 23:38:12 | DEBUG | Estado cargado: 20 tickets conocidos.
+2026-03-19 23:38:12 | DEBUG | LOG CSV → 2026-03-19,23:38:12,NOT_FOUND,N/A
+2026-03-19 23:38:12 | DEBUG | Estado guardado: 20 tickets.
+2026-03-19 23:38:12 | INFO | Navegador cerrado.

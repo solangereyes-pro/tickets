@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Archivos de estado del robot (se gestionan via git commit automático)
+robot.pid
+output.log
+
+# Screenshots de errores (se suben como artefactos de Actions)
+screenshots/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Variables de entorno locales
+.env
+.env.local

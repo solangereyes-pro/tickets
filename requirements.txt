@@ -1,0 +1,16 @@
+# ServiceTonic Monitor — Dependencias Python
+# Instalar con: pip3 install -r requirements.txt
+
+# Browser automation
+playwright>=1.40.0
+
+# Las siguientes librerías son parte de la biblioteca estándar de Python 3.x
+# y NO requieren instalación adicional:
+#   - smtplib      (envío de emails)
+#   - email.mime   (construcción de mensajes MIME)
+#   - json         (persistencia de estado)
+#   - logging      (sistema de logs)
+#   - datetime     (timestamps)
+#   - pathlib      (manejo de rutas)
+#   - time         (sleep/intervalos)
+#   - sys          (salida del proceso)

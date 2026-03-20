@@ -1,0 +1,36 @@
+{
+  "servicetonic": {
+    "login_url": "https://admincoordinador.plataformagroup.cl/ServiceTonic/login.jsf",
+    "tickets_url": "https://admincoordinador.plataformagroup.cl/ServiceTonic/xhtml/agentes/servicedesk/agent_sd.jsf?id=66",
+    "username": "REDACTED_USER",
+    "password": "REDACTED_PASS"
+  },
+  "email": {
+    "recipient": "solange.reyes@prodigio.tech",
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "smtp_user": "",
+    "smtp_password": "",
+    "use_tls": true,
+    "sender_name": "ServiceTonic Monitor"
+  },
+  "slack": {
+    "webhook_url": "",
+    "channel": "#tickets",
+    "username": "ServiceTonic Bot",
+    "icon_emoji": ":ticket:",
+    "enabled": true
+  },
+  "monitor": {
+    "check_interval_seconds": 60,
+    "login_retry_attempts": 3,
+    "page_load_timeout_ms": 30000,
+    "retry_wait_seconds": 30,
+    "headless": true
+  },
+  "files": {
+    "state_file": "last_tickets.json",
+    "log_file": "ticket_monitor.log",
+    "screenshots_dir": "screenshots"
+  }
+}
