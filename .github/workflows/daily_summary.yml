@@ -1,0 +1,40 @@
+name: ServiceTonic — Resumen Diario
+
+on:
+  schedule:
+    # Ejecutar a las 23:59 hora de Chile (UTC-3) = 02:59 UTC del día siguiente
+    # Equivale a las 23:59 CLT (Chile Standard Time, UTC-3)
+    - cron: '59 2 * * *'
+  workflow_dispatch:
+    # Permite ejecución manual desde la UI de GitHub Actions (útil para pruebas)
+
+jobs:
+  daily-summary:
+    name: Enviar resumen diario a Slack
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # ── 1. Checkout del repositorio ──────────────────────────────
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+        with:
+          # Necesario para leer el ticket_monitor.log actualizado
+          ref: main
+          fetch-depth: 1
+
+      # ── 2. Configurar Python ──────────────────────────────────────
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # ── 3. Ejecutar el script de resumen diario ───────────────────
+      - name: Enviar resumen diario a Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          # Calcular la fecha de ayer en hora de Chile (UTC-3)
+          FECHA_CHILE=$(TZ="America/Santiago" date +"%Y-%m-%d")
+          echo "Generando resumen para la fecha: $FECHA_CHILE"
+          python3 daily_summary.py --date "$FECHA_CHILE"
